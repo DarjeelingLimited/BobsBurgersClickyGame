@@ -3,11 +3,12 @@ import React from "react";
 
 // props are from characters.json file
 
+
 function Character(props) {
   return (
     <div className="card">
-      <div className="img-container">
-        <p> test </p>
+      <div id={props.id} value={props.id} className="img-container" onClick={() => 
+        props.characterClicked(props.id)}>
         <img alt={props.name} src={props.imgsrc} />
       </div>
     </div>
