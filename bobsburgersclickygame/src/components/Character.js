@@ -3,14 +3,15 @@ import React from "react";
 
 // props are from characters.json file
 
-function character(props) {
+function Character(props) {
   return (
     <div className="card">
       <div className="img-container">
-        <img alt={props.name} src={props.img_url} />
+        <p> test </p>
+        <img alt={props.name} src={props.imgsrc} />
       </div>
     </div>
   );
 }
 
-export default character;
+export default Character;
