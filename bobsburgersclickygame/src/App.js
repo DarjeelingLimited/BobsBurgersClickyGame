@@ -32,26 +32,26 @@ class App extends Component {
       1: true,
       2: true
     },
-    message: '',
+    result: '',
     gameEnded: false,
   }; //end of state
 
   // to see if a component is ready to use (inserted into the tree), this lifecycle method can be used
   componentDidMount() {
-    this.setState({ message: "Click on one of the characters below to get started." })
+    this.setState({ result: "Click on one of the characters below to get started." })
   }
 
   characterClicked = (id) => {
-    console.log("Clicked character: ${id}");
-    const clicked = { ...this.state.clicked }
-    clicked[id] = true
-    this.setState({ clicked }, () => {
-      this.addPoints(id);
+    if(this.state.clicked[id] = true){
+      this.addPoints();
       this.setState({
         gameEnded: false
       });
-    })
-  }
+    }
+    // else {
+    //   this.reset
+    // }
+    }
 
   //shuffle cards but also make them random and use the randomizeCharacters function
   shuffle = () => {
@@ -66,7 +66,7 @@ class App extends Component {
     if (points === this.state.characters.length) {
       //the user keeps playing because they haven't duplicated clicks yet
       this.setState({
-        message: "You guessed correctly!",
+        result: "You guessed correctly!",
         score: points,
         clicked: true,
         characters,
@@ -78,13 +78,16 @@ class App extends Component {
         result: "Correct"
       });
     }
+    // this.shuffle();
   }
-  //check if clicked
-  //newfunctions(id)
-  //const {clicked} = this.state
-  //if(clicked[id]) 
-  //so if true do sometning
-  //else keep playing
+  
+ reset = () => {
+   this.setState({
+     score: 0, 
+     result: "You lose"
+   });
+   this.shuffle();
+ }
 
   //the props on the left-hand side, and on the right-hand side match the json file
   // for the Character component, you need a "key", which acts like a for loop
