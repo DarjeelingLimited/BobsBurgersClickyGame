@@ -13,7 +13,7 @@ function ScoreTopNavBar (props) {
             <nav style={style.color} className="center">
                 <p className="game-intro">Bob's Burgers Clicky Game</p>
                 <p className="game-intro">You are {props.status}!</p>
-                <p className="game-intro" title="score">Score: {props.score}</p>
+                <p className="game-intro" title="score">Score: {props.score} | </p>
                 <p className="game-intro">Top Score: {props.TopScore} </p>
             </nav>
     );

@@ -28,20 +28,63 @@ class App extends Component {
     score: 0,
     topScore: 0,
     characters,
-    clicked: [],
-    startMessage: '',
-    lose: false,
-
+    clicked: {
+      1: true,
+      2: true
+    },
+    message: '',
+    gameEnded: false,
   }; //end of state
 
   // to see if a component is ready to use (inserted into the tree), this lifecycle method can be used
   componentDidMount() {
-    this.setState({ startMessage: "Click on one of the characters below to get started." })
+    this.setState({ message: "Click on one of the characters below to get started." })
+  }
+
+  characterClicked = (id) => {
+    console.log("Clicked character: ${id}");
+    const clicked = { ...this.state.clicked }
+    clicked[id] = true
+    this.setState({ clicked }, () => {
+      this.addPoints(id);
+      this.setState({
+        gameEnded: false
+      });
+    })
+  }
+
+  //shuffle cards but also make them random and use the randomizeCharacters function
+  shuffle = () => {
+    let shuffleCards = randomizeCharacters(characters);
+    this.setState = ({ characters: shuffleCards })
   };
 
-//   function characterClicked(){
-// if()
-//   }
+  //+1 point every time a player clicks a non-match
+  addPoints = () => {
+    let points = this.state.score + 1;
+    console.log("Current Score: ${score}");
+    if (points === this.state.characters.length) {
+      //the user keeps playing because they haven't duplicated clicks yet
+      this.setState({
+        message: "You guessed correctly!",
+        score: points,
+        clicked: true,
+        characters,
+        gameEnded: false
+      });
+    } else {
+      this.setState({
+        score: points,
+        result: "Correct"
+      });
+    }
+  }
+  //check if clicked
+  //newfunctions(id)
+  //const {clicked} = this.state
+  //if(clicked[id]) 
+  //so if true do sometning
+  //else keep playing
 
   //the props on the left-hand side, and on the right-hand side match the json file
   // for the Character component, you need a "key", which acts like a for loop
@@ -51,15 +94,16 @@ class App extends Component {
     console.log(characters);
     return (
       <div className="container">
-          <ScoreTopNavBar
-            score={this.state.score} topScore={this.state.topScore}
-          />
+        <ScoreTopNavBar
+          score={this.state.score} topScore={this.state.topScore}
+        />
         <PlayGame />
-        <div className="click-item">
+        <div>
           {characters.map((index, i) => (<Character
             key={i}
             name={index.name}
             imgsrc={index.img_url}
+            characterClicked={this.characterClicked}
           />))}
         </div>
       </div >
