@@ -7,7 +7,7 @@ const style = {
     // }
   };
 
-    function PlayGame (props) {
+    function Header (props) {
         return (
             <div style={style.color} className="container">
                 <h1>Let's play!</h1>
@@ -15,4 +15,4 @@ const style = {
             </div>
         );
     }
-    export default PlayGame;
+    export default Header;

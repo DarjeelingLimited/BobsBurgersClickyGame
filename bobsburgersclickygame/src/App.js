@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import ScoreTopNavBar from './components/ScoreTopNavBar'
-import PlayGame from "./components/PlayGame";
+import NavBar from './components/NavBar'
+import Header from "./components/Header";
 import Character from "./components/Character";
+import ImageBox from "./components/ImageBox";
 import characters from "./characters.json"
 
 import "./components/CharacterStyle.css";
@@ -42,7 +43,7 @@ class App extends Component {
   }
 
   characterClicked = (id) => {
-    if(this.state.clicked[id] = true){
+    if (this.state.clicked[id] = true) {
       this.addPoints();
       this.setState({
         gameEnded: false
@@ -51,7 +52,7 @@ class App extends Component {
     // else {
     //   this.reset
     // }
-    }
+  }
 
   //shuffle cards but also make them random and use the randomizeCharacters function
   shuffle = () => {
@@ -80,14 +81,14 @@ class App extends Component {
     }
     // this.shuffle();
   }
-  
- reset = () => {
-   this.setState({
-     score: 0, 
-     result: "You lose"
-   });
-   this.shuffle();
- }
+
+  reset = () => {
+    this.setState({
+      score: 0,
+      result: "You lose"
+    });
+    this.shuffle();
+  }
 
   //the props on the left-hand side, and on the right-hand side match the json file
   // for the Character component, you need a "key", which acts like a for loop
@@ -97,10 +98,10 @@ class App extends Component {
     console.log(characters);
     return (
       <div className="container">
-        <ScoreTopNavBar
+        <NavBar
           score={this.state.score} topScore={this.state.topScore}
         />
-        <PlayGame />
+        <Header />
         <div>
           {characters.map((index, i) => (<Character
             key={i}

@@ -8,9 +8,9 @@ const style = {
     // }
   };
 
-function ScoreTopNavBar (props) {
+function NavBar (props) {
     return (
-            <nav style={style.color} className="center">
+            <nav style={style.color} className="navbar-light">
                 <p className="game-intro">Bob's Burgers Clicky Game</p>
                 <p className="game-intro">You are {props.status}!</p>
                 <p className="game-intro" title="score">Score: {props.score} | </p>
@@ -19,5 +19,5 @@ function ScoreTopNavBar (props) {
     );
 }
 
-export default ScoreTopNavBar;
+export default NavBar;
 

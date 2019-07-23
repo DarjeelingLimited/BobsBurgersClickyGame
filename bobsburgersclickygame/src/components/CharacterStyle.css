@@ -11,6 +11,11 @@
     cursor: pointer;
 };
 
+.card{
+    width: 200px;
+
+};
+
 img {
     width: 200px; 
     height: 175px;
